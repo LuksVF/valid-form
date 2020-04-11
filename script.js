@@ -3,6 +3,7 @@ const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
 const checkPassword = document.getElementById('check-password');
+let modal = document.querySelector(".modal");
 
 //Error message
 function showError(input, message) {
@@ -53,17 +54,30 @@ function checkLength(input, min, max) {
 //Password match
 function checkPasswordsMatch(input1, input2){
     if(input1.value != input2.value) {
-        showError(input, 'Erro na confirmação da senha')
+        showError(input2, 'Erro na confirmação da senha')
+    } else if(input2.value == "") {
+        showError(input2, 'Erro na confirmação da senha')
+    } else {
+        showSuccess(input2);
     }
+}
+
+//Modal
+function activateModal() {
+    modal.style.visibility = "visible";   
+}
+
+//Close Modal
+function closeModal(){
+    modal.style.visibility = "hidden";
 }
 
 //Event Listeners
 form.addEventListener('submit', function(e) {
+    let inputs = document.querySelectorAll(".success");
     e.preventDefault();
-
     checkRequired([username, email, password, checkPassword]);
-    checkLength(username, 3, 15);
-    checkLength(password, 6, 25);
-    checkEmail(email);
-    checkPasswordsMatch(password, checkPassword);
+    if(inputs.length == 4) {
+        activateModal();
+    }
 })

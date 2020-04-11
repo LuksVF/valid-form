@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie-edge">
         <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/3437966676.js" crossorigin="anonymous"></script>
         <title>Validador de Formulário</title>
     </head>
 
@@ -14,26 +15,34 @@
                 <h2>Faça seu registro conosco</h2>
                 <div class="form-control">
                     <label for="username">Nome de Usuário</label>
-                    <input type="text" id="username" placeholder="Digite seu nome de usuário">
+                    <input type="text" id="username" placeholder="Digite seu nome de usuário" onblur="checkLength(username, 3, 15)">
                     <small>Erro</small>
                 </div>
                 <div class="form-control">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Digite seu email">
+                    <input type="email" id="email" placeholder="Digite seu email" onblur="checkEmail(email)">
                     <small>Erro</small>
                 </div>
                 <div class="form-control">
                     <label for="password">Senha</label>
-                    <input type="password" id="password" placeholder="Digite sua senha">
+                    <input type="password" id="password" placeholder="Digite sua senha" onblur="checkLength(password, 6, 25)">
                     <small>Erro</small>
                 </div>
                 <div class="form-control">
                     <label for="check-password">Confirme sua Senha</label>
-                    <input type="password" id="check-password" placeholder="Confirme a senha digitada">
+                    <input type="password" id="check-password" placeholder="Confirme a senha digitada" onblur="checkPasswordsMatch(password, checkPassword)">
                     <small>Erro</small>
                 </div>
                 <button>Enviar</button>
             </form>
+        </div>
+
+        <div class="modal">
+            <div class="modal_box">
+                <i class="far fa-times-circle" onclick="closeModal()"></i>
+                <h3>Eba! =)</h3>
+                <p>Seu registro foi realizado com sucesso. </p>
+            </div>
         </div>
 
         <script src="script.js"></script>
